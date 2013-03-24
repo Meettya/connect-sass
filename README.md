@@ -1,4 +1,8 @@
-Connect/express middelware for rendering SASS/SCSS. Basic usage is as follows:
+Connect/express middelware for rendering SASS/SCSS. Install via `npm`:
+
+    npm install connect-sass
+
+Basic usage is as follows:
 
     express = require('express');
     sass = require('connect-sass');
