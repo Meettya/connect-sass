@@ -1,0 +1,27 @@
+{
+  "name": "connect-sass",
+  "version": "0.1.0",
+  "description": "Connect middleware for rendering SASS/SCSS",
+  "main": "index.js",
+
+  "dependencies": {
+    "fibrous": ""
+  },
+
+  "keywords": [
+    "connect",
+    "express",
+    "sass",
+    "css",
+    "assets",
+    "middelware"
+  ],
+
+  "author": {
+    "name": "Andrey Popp",
+    "email": "8mayday@gmail.com",
+    "url": "http://andreypopp.com"
+  },
+
+  "license": "MIT"
+}
