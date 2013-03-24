@@ -58,7 +58,7 @@
     return function(req, res, next) {
       return rendered.resolve(function(err, result) {
         if (err != null) {
-          return next();
+          throw err;
         } else {
           return res.end(result);
         }

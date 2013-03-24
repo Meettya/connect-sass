@@ -31,4 +31,4 @@ exports.serve = (filename) ->
 
   (req, res, next) ->
     rendered.resolve (err, result) ->
-      if err? then next() else res.end(result)
+      if err? then throw err else res.end(result)

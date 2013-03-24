@@ -5,5 +5,5 @@ publish:
 	git push --tags
 	npm publish
 
-index.js:
-	coffee --map -c index.coffee
+index.js: index.coffee
+	coffee --map -c $<
