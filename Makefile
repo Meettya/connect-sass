@@ -7,3 +7,6 @@ publish:
 
 index.js: index.coffee
 	coffee --map -c $<
+
+example:
+	./example/app.coffee

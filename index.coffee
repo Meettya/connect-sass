@@ -1,10 +1,10 @@
 {spawn} = require 'child_process'
 path = require 'path'
 fs = require 'fs'
-fibrous = require 'fibrous'
+Q = require 'kew'
 
 cmd = (cmd, args...) ->
-  future = new fibrous.Future
+  promise = Q.defer()
   ps = spawn(cmd, args)
   stdout = []
   stderr = []
@@ -12,11 +12,10 @@ cmd = (cmd, args...) ->
   ps.stderr.on 'data', (chunk) -> stderr.push(chunk)
   ps.on 'exit', (code) ->
     if code == 0
-      future.return stdout.join('')
+      promise.resolve stdout.join('')
     else
-      error = new Error stderr.join('')
-      future.throw error
-  future
+      promise.reject new Error stderr.join('')
+  promise
 
 isSass = /\.(sass|scss)$/
 
@@ -30,5 +29,7 @@ exports.serve = (filename) ->
     rendered = render() if isSass.test filename
 
   (req, res, next) ->
-    rendered.resolve (err, result) ->
-      if err? then throw err else res.end(result)
+    rendered
+      .then (result) ->
+        res.end(result)
+      .fail next
