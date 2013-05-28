@@ -1,16 +1,14 @@
 {
   "name": "connect-sass",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Connect middleware for rendering SASS/SCSS",
   "main": "index.js",
-
   "dependencies": {
     "kew": "~0.1.6"
   },
   "devDependencies": {
     "semver": ""
   },
-
   "keywords": [
     "connect",
     "express",
@@ -19,12 +17,10 @@
     "assets",
     "middelware"
   ],
-
   "author": {
     "name": "Andrey Popp",
     "email": "8mayday@gmail.com",
     "url": "http://andreypopp.com"
   },
-
   "license": "MIT"
 }
