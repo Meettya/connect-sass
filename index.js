@@ -37,9 +37,16 @@
 
   isSass = /\.(sass|scss)$/;
 
-  exports.serve = function(filename) {
-    var dirname, render, rendered;
+  exports.serve = function(options) {
+    var contentType, dirname, filename, render, rendered;
 
+    if (options.toString() === '[object Object]') {
+      filename = options.filename;
+      contentType = options.contentType || 'text/css';
+    } else {
+      filename = options;
+      contentType = 'text/css';
+    }
     dirname = path.dirname(filename);
     render = function() {
       return cmd('sass', '--compass', filename);
@@ -54,6 +61,7 @@
     });
     return function(req, res, next) {
       return rendered.then(function(result) {
+        res.setHeader('Content-type', contentType);
         return res.end(result);
       }).fail(next);
     };

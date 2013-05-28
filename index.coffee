@@ -19,7 +19,14 @@ cmd = (cmd, args...) ->
 
 isSass = /\.(sass|scss)$/
 
-exports.serve = (filename) ->
+exports.serve = (options) ->
+  if options.toString() == '[object Object]'
+    filename = options.filename
+    contentType = options.contentType or 'text/css'
+  else
+    filename = options
+    contentType = 'text/css'
+
   dirname = path.dirname(filename)
   render = -> cmd 'sass', '--compass', filename
 
@@ -31,5 +38,6 @@ exports.serve = (filename) ->
   (req, res, next) ->
     rendered
       .then (result) ->
+        res.setHeader('Content-type', contentType)
         res.end(result)
       .fail next
